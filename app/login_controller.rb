@@ -1,3 +1,5 @@
+motion_require '../config/config'
+
 class LoginController < Formotion::FormController
   def init
     form = Formotion::Form.new({
@@ -34,7 +36,7 @@ class LoginController < Formotion::FormController
   end
 
   def login
-    BW::HTTP.post("http://192.168.0.35:3000/api/login", payload: {:username => form.render[:username], :password => form.render[:password]}) do |response|  
+    BW::HTTP.post(APP_CONFIG[:server_url] + "/api/login", payload: {:username => form.render[:username], :password => form.render[:password]}) do |response|  
       begin
         result = BW::JSON.parse(response.body.to_str)
         UserController.controller.show_status("Welcome #{result[:username].to_str}" )

@@ -5,9 +5,7 @@ class UserController < UIViewController
 
   def viewDidLoad
     super
-
     self.view.backgroundColor = UIColor.whiteColor
-
     @status_label = UILabel.alloc.initWithFrame(CGRectZero)
     self.view.addSubview(@status_label)
   end
